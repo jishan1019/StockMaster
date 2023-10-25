@@ -62,15 +62,15 @@
                 <input type="text" name="r_pass" id="r_pass" placeholder="Enter You Confirm Password" require>
             </div>
 
-            <div>
+            <div class="text-center">
                 <p><span>***</span>By createing an account you agree out Terms & Privacy</p>
             </div>
 
-            <div>
-                <input type="submit" class="btn btn-sucess" value="Submit">
+            <div class="text-center">
+                <input type="submit" class="btn btn-sucess btn_submit" value="Submit">
             </div>
 
-            <div>
+            <div class="pt-3 text-center login_button">
                 <p>Alrady have account <a href="login.php">Login Now</a></p>
             </div>
 
