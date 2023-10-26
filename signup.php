@@ -1,4 +1,6 @@
 <?php
+include 'auth/connection.php';
+$conn = connect();
 
 
 
@@ -35,6 +37,8 @@
 
         <div class="container">
             <h1>Registration From</h1>
+
+            <hr>
 
             <div>
                 <label for="">Your Name <span>*</span></label>

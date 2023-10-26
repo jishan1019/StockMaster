@@ -25,6 +25,17 @@ form{
    
 }
 
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+        form {
+            padding: 0px;
+        }
+}
+
+
 
 /* Full-width input fields */
 input[type=text],
