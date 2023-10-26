@@ -11,3 +11,9 @@ function connect()
 
     return $conn;
 }
+
+
+function closeConnection($cn)
+{
+    $cn->close();
+}
