@@ -11,13 +11,14 @@ if (isset($_POST['submit'])) {
     $r_pass = $_POST['r_pass'];
 
     if ($pass === $r_pass) {
-        $sql = "INSERT INTO user_info('name','u_name', 'email', 'pass')" .
-            "VALUES ('$name','$u_name','$email','$pass')";
+        $sql = "INSERT INTO user_info ( name, u_name, email, password) VALUES ('$name','$u_name','$email','$pass')";
 
-        if ($conn->query($sql === true)) {
+        echo ($conn->query($sql));
+
+        if ($conn->query($sql) === true) {
             header('Location: login.php');
         } else {
-            $massage = "Somthing went worng Data not insert";
+            $massage = "Something went wrong: " . $conn->error;
         }
     } else {
         $massage = "Password Does Not Match";
@@ -58,6 +59,13 @@ if (isset($_POST['submit'])) {
     <form method="POST" action="signup.php" enctype="multipart/form-data">
         <div class="container">
             <h1>Registration From</h1>
+
+            <!-- Error Massage -->
+            <span>
+                <?php
+                if ($massage != '') echo $massage
+                ?>
+            </span>
 
             <hr>
 
