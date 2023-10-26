@@ -1,6 +1,28 @@
 <?php
 include 'auth/connection.php';
 $conn = connect();
+$massage = '';
+
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $u_name = $_POST['u_name'];
+    $email = $_POST['email'] ? $_POST['email'] : "";
+    $pass = $_POST['pass'];
+    $r_pass = $_POST['r_pass'];
+
+    if ($pass === $r_pass) {
+        $sql = "INSERT INTO user_info('name','u_name', 'email', 'pass')" .
+            "VALUES ('$name','$u_name','$email','$pass')";
+
+        if ($conn->query($sql === true)) {
+            header('Location: login.php');
+        } else {
+            $massage = "Somthing went worng Data not insert";
+        }
+    } else {
+        $massage = "Password Does Not Match";
+    }
+}
 
 
 
@@ -32,9 +54,8 @@ $conn = connect();
 <body>
 
 
+
     <form method="POST" action="signup.php" enctype="multipart/form-data">
-
-
         <div class="container">
             <h1>Registration From</h1>
 
@@ -47,7 +68,7 @@ $conn = connect();
 
             <div>
                 <label for="">User Name<span>*</span></label>
-                <input type="text" name="uname" id="uname" placeholder="Enter You UserName" require>
+                <input type="text" name="u_name" id="u_name" placeholder="Enter You UserName" require>
             </div>
 
             <div>
@@ -71,7 +92,7 @@ $conn = connect();
             </div>
 
             <div class="text-center">
-                <input type="submit" class="btn btn-sucess btn_submit" value="Submit">
+                <input type="submit" name="submit" class="btn btn-sucess btn_submit" value="Submit">
             </div>
 
             <div class="pt-3 text-center login_button">
