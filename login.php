@@ -11,6 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Now</title>
 
+    <!-- google icon  -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -32,9 +36,35 @@
             <div class="cardBody">
                 <h1>Log In </h1>
 
-                <div>
-                    <input type="email" name="email" id="email" placeholder="Enter Email">
+                <!-- input fild -->
+                <div id="emailInputContainer" class="inputContainer">
+                    <input class="inputFild" type="email" name="email" id="email" placeholder="Enter Email">
+
+                    <span class="material-symbols-outlined inputIcon">
+                        person
+                    </span>
                 </div>
+
+
+                <!-- input fild -->
+                <div class="inputContainer">
+                    <input class="inputFild" type="password" name="password" id="password" placeholder="Enter Password">
+
+                    <span class="material-symbols-outlined">
+                        visibility
+                    </span>
+                </div>
+
+
+                <div class="submitButtonConatiner">
+                    <input class="submit" type="submit" value="Login Now">
+                </div>
+
+
+                <p class="signupLink">Did'n have account <a href="signup.php">Signup now</a></p>
+
+
+
             </div>
         </div>
 
