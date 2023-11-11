@@ -50,7 +50,7 @@
                 <div class="inputContainer">
                     <input class="inputFild" type="password" name="password" id="password" placeholder="Enter Password">
 
-                    <span class="material-symbols-outlined">
+                    <span id="visibility" class="material-symbols-outlined">
                         visibility
                     </span>
                 </div>
@@ -69,6 +69,19 @@
         </div>
 
     </form>
+
+
+    <script>
+    document.getElementById("visibility").addEventListener("click", () => {
+        const password = document.getElementById("password");
+
+        if (password.type === "password") {
+            password.type = "text";
+        } else {
+            password.type = "password";
+        }
+    });
+    </script>
 
 </body>
 
