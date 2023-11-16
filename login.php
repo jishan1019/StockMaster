@@ -1,4 +1,23 @@
 <?php
+include "auth/connection.php";
+$conn = connect();
+
+$m = '';
+
+if (isset($_POST['submit'])) {
+    $u_name = $_POST['u_name'];
+    $pass = $_POST['pass'];
+
+    $sql = "SELECT * FROM user_info WHERE u_name = '$u_name' AND password = '$pass'";
+    $res = $conn->query($sql);
+
+    if (mysqli_num_rows($res) == 1) {
+        header('Location:dashboard/dashboard.php');
+    } else {
+        $m = "Incerect login username / password";
+    }
+}
+
 
 
 ?>
@@ -36,9 +55,13 @@
             <div class="cardBody">
                 <h1>Log In </h1>
 
+                <p class="error__mass"><?php
+                                        if ($m != '') echo $m
+                                        ?></p>
+
                 <!-- input fild -->
                 <div id="emailInputContainer" class="inputContainer">
-                    <input class="inputFild" type="email" name="email" id="email" placeholder="Enter Email">
+                    <input class="inputFild" type="text" name="u_name" id="u_name" placeholder="Enter Username">
 
                     <span class="material-symbols-outlined inputIcon">
                         person
@@ -48,7 +71,7 @@
 
                 <!-- input fild -->
                 <div class="inputContainer">
-                    <input class="inputFild" type="password" name="password" id="password" placeholder="Enter Password">
+                    <input class="inputFild" type="password" name="pass" id="pass" placeholder="Enter Password">
 
                     <span id="visibility" class="material-symbols-outlined">
                         visibility
@@ -57,7 +80,7 @@
 
 
                 <div class="submitButtonConatiner">
-                    <input class="submit" type="submit" value="Login Now">
+                    <input class="submit" type="submit" name="submit" value="Login Now">
                 </div>
 
 
@@ -73,7 +96,7 @@
 
     <script>
     document.getElementById("visibility").addEventListener("click", () => {
-        const password = document.getElementById("password");
+        const password = document.getElementById("pass");
 
         if (password.type === "password") {
             password.type = "text";
