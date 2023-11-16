@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+$user = $_SESSION['user'];
+$userid = $_SESSION['userid'];
+
+echo $userid . "ans user" . $user
+
 
 ?>
 

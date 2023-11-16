@@ -2,6 +2,10 @@
 include "auth/connection.php";
 $conn = connect();
 
+session_start();
+$_SESSION['user'] = '';
+$_SESSION['userid'] = '';
+
 $m = '';
 
 if (isset($_POST['submit'])) {
@@ -12,6 +16,10 @@ if (isset($_POST['submit'])) {
     $res = $conn->query($sql);
 
     if (mysqli_num_rows($res) == 1) {
+        $user = mysqli_fetch_assoc($res);
+        $_SESSION['user'] = $user['name'];
+        $_SESSION['userid'] = $user['id'];
+
         header('Location:dashboard/dashboard.php');
     } else {
         $m = "Incerect login username / password";
@@ -31,8 +39,7 @@ if (isset($_POST['submit'])) {
     <title>Login Now</title>
 
     <!-- google icon  -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -95,15 +102,15 @@ if (isset($_POST['submit'])) {
 
 
     <script>
-    document.getElementById("visibility").addEventListener("click", () => {
-        const password = document.getElementById("pass");
+        document.getElementById("visibility").addEventListener("click", () => {
+            const password = document.getElementById("pass");
 
-        if (password.type === "password") {
-            password.type = "text";
-        } else {
-            password.type = "password";
-        }
-    });
+            if (password.type === "password") {
+                password.type = "text";
+            } else {
+                password.type = "password";
+            }
+        });
     </script>
 
 </body>
